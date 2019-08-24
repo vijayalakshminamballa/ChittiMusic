@@ -32,5 +32,11 @@ namespace ChittiMusic
             var songList = await Song.GetPlaylistAsync();
             this.DataContext = songList;
         }
+
+        protected  async void song_double_tap(object sender, DoubleTappedRoutedEventArgs args)
+        {
+            var song = (Song)((StackPanel)sender).DataContext;
+            this.Frame.Navigate(typeof(SongDetails), song);
+        }
     }
 }

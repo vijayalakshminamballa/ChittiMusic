@@ -16,6 +16,7 @@ namespace ChittiMusic
         public string album { get; set; }
         public string artist { get; set; }
         public string durationOfSong { get; set; }
+        public string fileName { get; set; }
         
         public BitmapImage coverImage { get; set; }
 
@@ -65,7 +66,8 @@ namespace ChittiMusic
                     album = Album,
                     artist = Artist,
                     durationOfSong = musicProperties.Duration.ToString(),
-                    coverImage = image
+                    coverImage = image,
+                    fileName = file.Name
 
                 };
                 songs.Add(song);

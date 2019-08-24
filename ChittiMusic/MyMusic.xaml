@@ -12,18 +12,15 @@
         
         <GridView Name="Songs" ItemsSource="{Binding}" 
                   Height="1000" Width="1000" 
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Song">
-                    <StackPanel Orientation="Horizontal" Margin="4" >
-                        <StackPanel Orientation="Vertical" Margin="4">
-                        <Image Source="{x:Bind coverImage}" Height="70" Width="150"/>
-                        
-                        <TextBlock Text="{x:Bind title}" Width="150"  Height="30"/>
+                    <StackPanel Orientation="Horizontal" Margin="4" DoubleTapped="song_double_tap" DataContext="{x:Bind}">
+                        <StackPanel Orientation="Vertical" Margin="4" Tag="{x:Bind}" >
+                            <Image Source="{x:Bind coverImage}" Height="70" Width="150"/>
+
+                            <TextBlock Text="{x:Bind title}" Width="150"  Height="30"/>
                         </StackPanel>
-                        <!--<TextBlock Text="{x:Bind album}" Width="250" />
-                        <TextBlock Text="{x:Bind artist}" Width="250" />
-                        <TextBlock Text="{x:Bind durationOfSong}" Width="250" />-->
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
