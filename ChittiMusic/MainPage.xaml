@@ -16,9 +16,10 @@
                 IsTabStop="False" Loaded="nvTopLevelNav_Loaded"
                 IsSettingsVisible="False" ItemInvoked="nvTopLevelNav_ItemInvoked" SelectionChanged="nvTopLevelNav_SelectionChanged">
                 <NavigationView.MenuItems>
-                    <NavigationViewItem Icon="Audio" Content="My Music" />
-                    <NavigationViewItem Icon="Add" Content="Add Music"  />
-                    <NavigationViewItem Icon="Delete" Content="DeleteAllSongs" />
+                <NavigationViewItem Icon="Audio" Content="Songs"/>
+                <NavigationViewItem Icon="Audio" Content="My Music"/>
+                <NavigationViewItem Icon="Add" Content="Add Music"  />
+                <NavigationViewItem Icon="Delete" Content="Delete All" />
                 </NavigationView.MenuItems>
                 <Frame x:Name="contentFrame">
                 </Frame>

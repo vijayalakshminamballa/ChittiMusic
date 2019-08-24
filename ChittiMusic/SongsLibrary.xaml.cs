@@ -20,16 +20,16 @@ namespace ChittiMusic
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddMusic : Page
+    public sealed partial class SongsLibrary : Page
     {
-        public AddMusic()
+        public SongsLibrary()
         {
             this.InitializeComponent();
         }
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var songList = await Song.GetAllSongsAsync();
+            var songList = await Song.GetLibraryAsync();
             this.DataContext = songList;
         }
     }

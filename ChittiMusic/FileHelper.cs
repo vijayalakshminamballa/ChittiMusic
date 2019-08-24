@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Search;
 
 namespace ChittiMusic
 {
@@ -18,18 +19,28 @@ namespace ChittiMusic
             var songProperties = await file.Properties.GetMusicPropertiesAsync();
         }
         //Updating cover image
-        public async static Task<int> CopyAndReplaceAsync(StorageFile file)
+        //public async static Task<int> CopyAndReplaceAsync(StorageFile file)
+        //{
+        //    StorageFolder storageLocation = ApplicationData.Current.LocalFolder;
+        //    StorageFolder imageFolder = await storageLocation.CreateFolderAsync("My CoverImage", CreationCollisionOption.OpenIfExists);
+        //    StorageFile imageFile = await imageFolder.CreateFileAsync("CoverImage.jpg", CreationCollisionOption.OpenIfExists);
+        //    await file.CopyAndReplaceAsync(imageFile);
+        //    return 1;
+
+        //}
+        public async static Task<IReadOnlyCollection<StorageFile>> GetLibrarySongs()
         {
-            StorageFolder storageLocation = ApplicationData.Current.LocalFolder;
-            StorageFolder imageFolder = await storageLocation.CreateFolderAsync("My CoverImage", CreationCollisionOption.OpenIfExists);
-            StorageFile imageFile = await imageFolder.CreateFileAsync("CoverImage.jpg", CreationCollisionOption.OpenIfExists);
-            await file.CopyAndReplaceAsync(imageFile);
-            return 1;
+            QueryOptions queryOption = new QueryOptions(CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4" });
 
+            queryOption.FolderDepth = FolderDepth.Deep;
+
+            Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
+
+            var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOption).GetFilesAsync();
+            return files;
         }
-
-        //Reading files
-        public async static Task<IReadOnlyCollection<StorageFile>> GetMusicFileAsync()
+            //Reading files
+            public async static Task<IReadOnlyCollection<StorageFile>> GetPlaylistSongs()
         {
             
                 StorageFolder storageLocation = ApplicationData.Current.LocalFolder;

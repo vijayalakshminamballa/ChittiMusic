@@ -29,17 +29,9 @@ namespace ChittiMusic
             this.InitializeComponent();
         }
 
-        //protected async override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    base.OnNavigatedTo(e);
-        //    await Song.GetAllSongsAsync();
-        //}
-
-        public string Test { get; set; }
-
         private void nvTopLevelNav_Loaded(object sender, RoutedEventArgs args)
         {
-            contentFrame.Navigate(typeof(AddMusic));
+            contentFrame.Navigate(typeof(MyMusic));
         }
         private async void AddSong()
         {
@@ -53,20 +45,17 @@ namespace ChittiMusic
                 FileHelper.CopyMusicFileAsync(file);
             }
 
-            contentFrame.Navigate(typeof(AddMusic));
+            contentFrame.Navigate(typeof(SongsLibrary));
         }
         private void DeleteSongs()
         {
-
-
             FileHelper.DeleteMusicFile();
-
         }
 
 
         private void nvTopLevelNav_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            contentFrame.Navigate(typeof(AddMusic));
+            // Do Nothing
         }
 
 
@@ -78,17 +67,26 @@ namespace ChittiMusic
             {
                 switch (itemTag)
                 {
+                    case "Songs":
+                        contentFrame.Navigate(typeof(SongsLibrary));
+                        break;
+
+                    case "My Music":
+                        contentFrame.Navigate(typeof(MyMusic));
+                        break;
+
                     case "Add Music":
                         AddSong();
-                        contentFrame.Navigate(typeof(AddMusic));
+                        contentFrame.Navigate(typeof(MyMusic));
                         break;
-                    case "DeleteAllSongs":
+
+                    case "Delete All":
                         DeleteSongs();
-                        contentFrame.Navigate(typeof(AddMusic));
+                        contentFrame.Navigate(typeof(MyMusic));
                         break;
 
                     default:
-                       contentFrame.Navigate(typeof(AddMusic));
+                       contentFrame.Navigate(typeof(MyMusic));
                         break;
                 }
             }

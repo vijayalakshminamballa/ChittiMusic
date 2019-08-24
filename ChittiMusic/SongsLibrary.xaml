@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ChittiMusic.AddMusic"
+    x:Class="ChittiMusic.SongsLibrary"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ChittiMusic"
@@ -11,15 +11,19 @@
     <Grid>
         
         <GridView Name="Songs" ItemsSource="{Binding}" 
-                  Height="300" Width="1000" 
+                  Height="1000" Width="1000" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Song">
-                    <StackPanel Orientation="Horizontal" Margin="2">
-                        <TextBlock Text="{x:Bind title}" Width="250" />
-                        <TextBlock Text="{x:Bind album}" Width="250" />
+                    <StackPanel Orientation="Horizontal" Margin="4" >
+                        <StackPanel Orientation="Vertical" Margin="4">
+                        <Image Source="{x:Bind coverImage}" Height="70" Width="150"/>
+                        
+                        <TextBlock Text="{x:Bind title}" Width="150"  Height="30"/>
+                        </StackPanel>
+                        <!--<TextBlock Text="{x:Bind album}" Width="250" />
                         <TextBlock Text="{x:Bind artist}" Width="250" />
-                        <TextBlock Text="{x:Bind durationOfSong}" Width="250" />
+                        <TextBlock Text="{x:Bind durationOfSong}" Width="250" />-->
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
