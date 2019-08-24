@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.FileProperties;
 
 namespace ChittiMusic
 {
@@ -28,22 +30,35 @@ namespace ChittiMusic
             };
             songs.Add(header);
 
-            var lines = await FileHelper.GetMusicFileAsync();
+          IReadOnlyCollection<StorageFile>   files = await FileHelper.GetMusicFileAsync();
 
-            //if (lines == null || lines.Count == 0)
-            //{
-            //    return songs;
-            //}
-            foreach (var line in lines)
+           
+            foreach (StorageFile file in files)
             {
-                var musicProperties = await line.Properties.GetMusicPropertiesAsync();
+                  MusicProperties musicProperties = await file.Properties.GetMusicPropertiesAsync();
+                  string songTitle = musicProperties.Title;
+                  string Album = musicProperties.Album;
+                  string Artist = musicProperties.Artist;
+                if(string.IsNullOrEmpty(songTitle))
+                {
+                    songTitle = file.DisplayName;
+                }
+                if(string.IsNullOrEmpty(Album))
+                {
+                    Album = "Unknown Album";
+                }
+                if(string.IsNullOrEmpty(Artist))
+                {
+                    Artist = "Unknown Artist";
+                }
 
                 var song = new Song
                 {
-                    title = musicProperties.Title,
-                    album = musicProperties.Album,
-                    artist = musicProperties.Artist,
+                    title = songTitle,
+                    album = Album,
+                    artist = Artist,
                     durationOfSong = musicProperties.Duration.ToString()
+                    
                 };
                 songs.Add(song);
             }
