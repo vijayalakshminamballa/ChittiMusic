@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="ChittiMusic.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ChittiMusic"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        
+            <NavigationView x:Name="nvTopLevelNav"
+                Margin="0,12,0,0"
+                IsTabStop="False" Loaded="nvTopLevelNav_Loaded"
+                IsSettingsVisible="False" ItemInvoked="nvTopLevelNav_ItemInvoked" SelectionChanged="nvTopLevelNav_SelectionChanged">
+                <NavigationView.MenuItems>
+                    <NavigationViewItem Icon="Audio" Content="My Music" Tag="MyMusic" />
+                    <NavigationViewItem Icon="Add" Content="Add Music" Tag="AddMusic" />
+                    <NavigationViewItem Icon="Delete" Content="DeleteAllSongs" Tag="DeleteMusic"/>
+                </NavigationView.MenuItems>
+                <Frame x:Name="contentFrame">
+                </Frame>
+
+                <NavigationView.AutoSuggestBox>
+                    <AutoSuggestBox x:Name="ASB" QueryIcon="Find"/>
+                </NavigationView.AutoSuggestBox>
+
+
+            </NavigationView>
+
+
+
+            <!--<Image Name="CoverImageElement" Source="ms-appdata:///local/My CoverImage/CoverImage.jpg" Margin="11,1,871,476"/>
+        <Button Content="Upload CoverImage" Margin="635,70,0,0" VerticalAlignment="Top" Height="80" Width="145" Click="UpdateImage_Click" RenderTransformOrigin="1.897,1"/>-->
+
+
+        
+
+    </Grid>
+</Page>
